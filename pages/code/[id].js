@@ -1,3 +1,4 @@
+// pages/code/[id].js
 import { useRouter } from 'next/router';
 import CodeEditor from '../../components/CodeEditor';
 
@@ -11,6 +12,11 @@ const codeBlocks = [
 export default function CodeBlockPage() {
   const router = useRouter();
   const { id } = router.query;
+
+  if (!id || !codeBlocks[id]) {
+    return <div>Code block not found</div>;
+  }
+
   const codeBlock = codeBlocks[id];
   const isMentor = true; // This should be determined dynamically
 
